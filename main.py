@@ -1,4 +1,3 @@
-
 import telebot
 from telebot import types
 from jproperties import Properties
@@ -27,6 +26,9 @@ def callback(call):
             question1(call.message)
         if call.data == 'girlfriiend' or call.data == 'wife' or call.data == 'sister' or call.data == 'mum' or call.data == 'friend':
             question2(call.message)
+        if call.data == 'small' or call.data == 'classic' or call.data == 'great':
+            question3(call.message)
+
 
 def question1(message):
     markup = types.InlineKeyboardMarkup(row_width=3)
@@ -60,6 +62,15 @@ def question3(message):
     markup.add(birthday, march, stValentine, newYear, anniversary)
 
     bot.send_message(message.chat.id, '2. Повод', reply_markup=markup)
+
+def question3(message):
+    markup = types.InlineKeyboardMarkup(row_width=3)
+    small = types.InlineKeyboardButton('Менее 50$', callback_data='small')
+    classic = types.InlineKeyboardButton('50$ - 200$', callback_data='classic')
+    great = types.InlineKeyboardButton('Более 200$', callback_data='great')
+    markup.add(small, classic, great)
+
+    bot.send_message(message.chat.id, '3. Бюджет подарка', reply_markup=markup)
 
 
 
