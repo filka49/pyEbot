@@ -1,8 +1,12 @@
 
 import telebot
 from telebot import types
+from jproperties import Properties
+configs = Properties()
 
-bot = telebot.TeleBot("5019167203:AAGEgjgDZ219dBT7I1nIHH41rwUYJjg49qw")
+with open('token.properties', 'rb') as config_file: configs.load(config_file)
+
+bot = telebot.TeleBot(configs.get("TOKEN"))
 
 @bot.message_handler(commands = ['start'])
 
